@@ -3,8 +3,8 @@ class Profil_Sekolah extends CI_Controller {
 	
 	public function index()
 	{
-		
-		$this->load->view('template_administrator/header');
+		$data['judul'] = 'Admin | Profil Sekolah | SIAKAD SMKN 2';
+      	$this->load->view('template_administrator/header', $data);
 		$this->load->view('template_administrator/navbar');
 		$this->load->view('administrator/master/profil_sekolah');
 		$this->load->view('template_administrator/footer');
@@ -12,8 +12,8 @@ class Profil_Sekolah extends CI_Controller {
 
 	public function create_profil_sekolah()
 	{
-		
-		$this->load->view('template_administrator/header');
+		$data['judul'] = 'Admin | Create Profil Sekolah | SIAKAD SMKN 2';
+      	$this->load->view('template_administrator/header', $data);
 		$this->load->view('template_administrator/navbar');
 		$this->load->view('administrator/master/create_profil_sekolah');
 		$this->load->view('template_administrator/footer');

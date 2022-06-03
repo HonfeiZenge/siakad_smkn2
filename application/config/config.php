@@ -35,7 +35,7 @@ $config['base_url'] = 'http://localhost/siakad_smkn2/';
 | variable so that it is blank.
 |
 */
-$config['index_page'] = 'index.php';
+$config['index_page'] = '';
 
 /*
 |--------------------------------------------------------------------------

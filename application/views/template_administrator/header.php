@@ -13,7 +13,15 @@ defined('BASEPATH') OR exit('No direct script access allowed');
     <link href="<?php echo base_url() ?>assets/bootstrap/css/bootstrap.css" rel="stylesheet" type="text/css">
     <link href="<?php echo base_url() ?>assets/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
     <link href="<?php echo base_url() ?>node_modules/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet" type="text/css">
-    <title>Siakad SMKN 2</title>
+    <title>
+      <?php
+        if($judul){
+          echo $judul;
+        } else {
+          echo 'SIAKAD SMKN 2';
+        }
+      ?>
+    </title>
   </head>
   <body>
 
