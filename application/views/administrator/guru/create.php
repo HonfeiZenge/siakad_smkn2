@@ -8,7 +8,7 @@
 		<?php echo validation_errors(); ?>
 	</div>
 	<?php } ?>
-	<form action="" method="post">
+	<?php echo form_open_multipart('administrator/guru/create') ?>
 		<div class="form-group">
 			<label>NIP</label>
 			<input type="text" name="nip" placeholder="Masukkan NIP" class="form-control">
@@ -21,7 +21,7 @@
 
 		<div class="form-group">
 			<label>Nama Lengkap Guru</label>
-			<input type="text" name="nama_guru" placeholder="Masukkan Nama Lengkap" class="form-control">
+			<input type="text" name="nama_lengkap" placeholder="Masukkan Nama Lengkap" class="form-control">
 		</div>
 
 		<div class="form-group">
@@ -72,16 +72,11 @@
 		</div>
 
 		<div class="form-group">
-			<label>Foto</label>
-			<input type="text" name="foto" placeholder="foto" class="form-control">	
-		</div>
-
-		<!-- <div class="form-group">
 			<label>Foto</label><br>
-			<input type="file" name="photo">
-		</div> -->
+			<input type="file" name="foto">
+		</div>
 
 		<button type="submit" class="btn btn-primary mb-5 mt-3">Simpan
 		</button>
-	</form>
+	<?php form_close(); ?>
 </div>

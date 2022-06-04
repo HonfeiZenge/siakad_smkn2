@@ -132,4 +132,8 @@ $autoload['language'] = array();
 |
 |	$autoload['model'] = array('first_model' => 'first');
 */
-$autoload['model'] = array('dashboard_model', 'administrator/Guru_model');
+$autoload['model'] = array(
+    'dashboard_model',
+    'administrator/Guru_model',
+    'administrator/kelas_model'
+);
