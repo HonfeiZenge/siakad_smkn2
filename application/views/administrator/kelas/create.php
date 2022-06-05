@@ -3,20 +3,89 @@
 	<div class="alert " role="alert" style="background: #9ec5fe;">
 		<i class="bi bi-people-fill"></i></i> Form Input 
 	</div>
-
+	<?php if(validation_errors()) : ?>
+	<div class="alert alert-warning" role="alert">
+		<?php echo validation_errors(); ?>
+	</div>
+	<?php endif; ?>
+	<?php echo form_open_multipart('administrator/kelas/store') ?>
 	<div class="form-group">
 		<label>Jenjang Kelas</label>
-		<input type="text" name="jenjang_kelas" placeholder="Masukkan Jenjang Kelas" class="form-control">
+		<select name="jenjang_kelas" class="form-control">
+			<option value="X">X</option>
+			<option value="XI">XI</option>
+			<option value="XII">XII</option>
+		</select>
 	</div>
 
 	<div class="form-group">
-		<label>Jurusan</label>
-		<input type="text" name="jurusan" placeholder="jurusan" class="form-control">
+		<label>Kompetensi Keahlian</label>
+		<select name="kompetensi_keahlian" class="form-control">
+			<?php foreach($kompetensi_keahlian as $kk) : ?>
+				<option value="<?=$kk['id_kompetensi_keahlian'];?>"><?=$kk['nama_kompetensi_keahlian'];?></option>
+			<?php endforeach; ?>
+		</select>
 	</div>
 
-	
+	<div class="form-group">
+		<label>Index Kelas</label>
+		<input type="text" name="index_kelas" placeholder="Masukkan Index Kelas" class="form-control">
+	</div>
 
-	
+	<div class="form-group">
+		<label>Nama Wali Kelas</label>
+		<div class="d-flex">
+			<input type="hidden" name="id_guru" id="id_guru">
+			<input type="text" name="nama_guru" id="nama_guru" placeholder="Pilih Guru" class="form-control" readonly="true">
+			<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modalGuru">
+				<i class="bi bi-search"></i>
+			</button>
+		</div>
+	</div>
+
+	<div class="form-group">
+		<label>Jumlah Murid</label>
+		<input type="text" name="jumlah_murid" placeholder="Masukkan Jumlah Murid" class="form-control">
+	</div>
+
+	<!-- Modal Guru -->
+	<div class="modal fade" id="modalGuru" tabindex="-1" aria-labelledby="listGuru" aria-hidden="true">
+		<div class="modal-dialog">
+			<div class="modal-content">
+			<div class="modal-header">
+				<h5 class="modal-title" id="listGuru">List Guru</h5>
+				<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+			</div>
+			<div class="modal-body">
+				<table class="table table-bordered table-striped table-hover">
+					<tr>
+						<td class="text-center">NIP</td>
+						<td class="text-center">Nama Guru</td>
+						<td class="text-center"><i class="bi bi-check-circle"></i></td>
+					</tr>
+					<?php foreach ($guru as $key => $val) :?>
+						<tr>
+							<td><?= $val['nip'] ?></td>
+							<td><?= $val['nama_lengkap'] ?></td>
+							<td class="text-center">
+								<div class="form-check">
+									<input class="form-check-input" type="radio" name="selectGuru" id="selectGuru" value="<?= $val['id_guru'].','.$val['nama_lengkap'] ?>">
+								</div>
+							</td>
+						</tr>
+					<?php endforeach; ?>
+				</table>
+			</div>
+			<div class="modal-footer">
+				<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Tutup</button>
+				<button type="button" class="btn btn-primary" id="pilihGuru" data-bs-dismiss="modal">Pilih Guru</button>
+			</div>
+			</div>
+		</div>
+	</div>
+
 	<button type="submit" class="btn btn-primary mb-5 mt-3">Simpan
 	</button>
+
+	<?php form_close(); ?>
 </div>

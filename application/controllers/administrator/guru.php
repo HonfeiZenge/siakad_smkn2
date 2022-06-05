@@ -1,14 +1,6 @@
 <?php  
 
 class Guru extends CI_Controller{
-	
-	// public function __construct()
-	// {
-	// 	parent::__construct();
-	// 	// Use this code if not listed on autoload
-	// 	//$this->load->model('admministrator/Guru_model');
-	// }
-
 	public function index()
 	{
 		$data['judul'] = 'Admin Data Guru | SIAKAD SMKN 2';
@@ -118,3 +110,9 @@ class Guru extends CI_Controller{
 	}
 
 }
+// public function __construct()
+// {
+// 	parent::__construct();
+// 	// Use this code if not listed on autoload
+// 	//$this->load->model('admministrator/Guru_model');
+// }

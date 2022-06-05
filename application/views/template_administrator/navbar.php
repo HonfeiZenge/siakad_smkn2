@@ -77,7 +77,7 @@
 	                    <div class="bg-white py-2 collapse-inner rounded">
 	                        <a class="collapse-item" href="<?php echo base_url('administrator/kelas') ?>">Data Kelas</a>
 					        <a class="collapse-item" href="<?php echo base_url('administrator/kelas/create') ?>">Tambah Data Kelas</a>
-					        <a class="collapse-item" href="<?php echo base_url('administrator/kelas/edit') ?>">Edit Data Kelas</a>
+					        <a class="collapse-item" href="<?php echo base_url('administrator/kelas/update') ?>">Edit Data Kelas</a>
 	                    </div>
 	                </div>
 	            </li>
