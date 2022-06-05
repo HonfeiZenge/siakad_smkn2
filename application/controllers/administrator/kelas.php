@@ -15,7 +15,7 @@ class Kelas extends CI_Controller{
 	public function create()
 	{
 		$data['judul'] = 'Admin | Create Kelas | SIAKAD SMKN 2';
-		$data['guru'] = $this->Guru_model->tampil_data();
+		$data['guru'] = $this->guru_model->tampil_data();
 		$data['kompetensi_keahlian'] = $this->kompetensi_keahlian_model->tampil_data();
       	$this->load->view('template_administrator/header', $data);
 		$this->load->view('template_administrator/navbar');
@@ -47,7 +47,7 @@ class Kelas extends CI_Controller{
 	{
 		$data['judul'] = 'Admin | Edit Kelas | SIAKAD SMKN 2';
 		$data['kelas'] = $this->kelas_model->edit($id);
-		$data['guru'] = $this->Guru_model->tampil_data();
+		$data['guru'] = $this->guru_model->tampil_data();
 		$data['kompetensi_keahlian'] = $this->kompetensi_keahlian_model->tampil_data();
 		$data['jenjang_kelas'] = ['X', 'XI', 'XII'];
 		
@@ -61,7 +61,7 @@ class Kelas extends CI_Controller{
 		$id = $this->input->post('id');
 		$data['judul'] = 'Admin | Edit Kelas | SIAKAD SMKN 2';
 		$data['kelas'] = $this->kelas_model->edit($id);
-		$data['guru'] = $this->Guru_model->tampil_data();
+		$data['guru'] = $this->guru_model->tampil_data();
 		$data['kompetensi_keahlian'] = $this->kompetensi_keahlian_model->tampil_data();
 		$data['jenjang_kelas'] = ['X', 'XI', 'XII'];
 		$this->rules();

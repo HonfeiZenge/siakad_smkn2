@@ -30,8 +30,9 @@
 				<?php if ($kelas['id_kompetensi_keahlian'] == $kk['id_kompetensi_keahlian']) : ?>
 					<option value="<?= $kelas['id_kompetensi_keahlian'] ?>" selected><?= $kk['nama_kompetensi_keahlian'] ?></option>
 				<?php else : ?>
-					<option value="<?= $kelas['id_kompetensi_keahlian'] ?>"><?= $kk['nama_kompetensi_keahlian'] ?></option>
+					<option value="<?= $kk['id_kompetensi_keahlian'] ?>"><?= $kk['nama_kompetensi_keahlian'] ?></option>
 				<?php endif; ?>
+				<?php echo $kk['id_kompetensi_keahlian']; ?>
 			<?php endforeach; ?>
 		</select>
 	</div>

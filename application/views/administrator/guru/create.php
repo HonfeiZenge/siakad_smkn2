@@ -21,7 +21,7 @@
 
 		<div class="form-group">
 			<label>Nama Lengkap Guru</label>
-			<input type="text" name="nama_lengkap" placeholder="Masukkan Nama Lengkap" class="form-control">
+			<input type="text" name="nama_guru" placeholder="Masukkan Nama Lengkap" class="form-control">
 		</div>
 
 		<div class="form-group">

@@ -3,12 +3,12 @@
 	<div class="alert alert-success" role="alert" style="background: #9ec5fe;">
 		<i class="bi bi-person-fill"></i> Form Input Guru
 	</div>
-	<?php if(validation_errors()) { ?>
+	<?php if(validation_errors()) : ?>
 	<div class="alert alert-warning" role="alert">
 		<?php echo validation_errors(); ?>
 	</div>
-	<?php } ?>
-	<form action="" method="post">
+	<?php endif; ?>
+	<?php echo form_open_multipart('administrator/guru/edit/'.$guru['id_guru']); ?>
 		<input type="hidden" name="id" value="<?= $guru['id_guru'] ?>" />
 		<div class="form-group">
 			<label>NIP</label>
@@ -17,7 +17,7 @@
 
 		<div class="form-group">
 			<label>NUPTK</label>
-			<input type="text" name="nuptk" value="<?= $guru['nip'] ?>" class="form-control">
+			<input type="text" name="nuptk" value="<?= $guru['nuptk'] ?>" class="form-control">
 		</div>
 
 		<div class="form-group">
@@ -72,12 +72,15 @@
 			<input type="text" name="pendidikan_terakhir" value="<?= $guru['pendidikan_terakhir'] ?>" class="form-control">	
 		</div>
 
+		<img src="<?php echo base_url(). 'uploads/foto_guru/'.$guru['foto'] ?>" class="w-50">
+		<h6>Details : <?= $guru['foto'] ?></h6>
+
 		<div class="form-group">
 			<label>Foto</label>
-			<input type="text" name="foto" value="<?= $guru['foto'] ?>" class="form-control">	
+			<input type="file" name="userfile" value="<?php echo $guru['foto'] ?>">
 		</div>
 
 		<button type="submit" class="btn btn-primary mb-5 mt-3">Ubah
 		</button>
-	</form>
+	<?php form_close(); ?>
 </div>

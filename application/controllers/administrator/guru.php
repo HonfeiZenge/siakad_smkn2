@@ -4,7 +4,7 @@ class Guru extends CI_Controller{
 	public function index()
 	{
 		$data['judul'] = 'Admin Data Guru | SIAKAD SMKN 2';
-		$data['guru'] = $this->Guru_model->tampil_data();
+		$data['guru'] = $this->guru_model->tampil_data();
 		$this->load->view('template_administrator/header', $data);
 		$this->load->view('template_administrator/navbar');
 		$this->load->view('administrator/guru/index', $data);
@@ -22,9 +22,9 @@ class Guru extends CI_Controller{
 			$this->load->view('administrator/guru/create');
 			$this->load->view('template_administrator/footer');
 		} else {
-			$nim = $this->input->post('nip');
+			$nip = $this->input->post('nip');
 			$nuptk = $this->input->post('nuptk');
-			$nama_lengkap = $this->input->post('nama_lengkap');
+			$nama_lengkap = $this->input->post('nama_guru');
 			$alamat = $this->input->post('alamat');
 			$telepon = $this->input->post('telepon');
 			$tempat_lahir = $this->input->post('tempat_lahir');
@@ -50,7 +50,7 @@ class Guru extends CI_Controller{
 			}
 	
 			$data = array(
-				'nip' => $nim,
+				'nip' => $nip,
 				'nuptk' => $nuptk,
 				'nama_lengkap' => $nama_lengkap,
 				'tempat_lahir' => $tempat_lahir,
@@ -60,10 +60,10 @@ class Guru extends CI_Controller{
 				'alamat' => $alamat,
 				'telepon' => $telepon,
 				'pendidikan_terakhir' => $pendidikan_terakhir,
-				"foto" => $foto
+				'foto' => $foto
 			);
 
-			$this->Guru_model->input_data($data);
+			$this->guru_model->input_data($data);
 			$this->session->set_flashdata('message', 'Berhasil Menyimpan Data');
 			redirect('administrator/guru');
 		}
@@ -74,7 +74,7 @@ class Guru extends CI_Controller{
 		$this->rules();
 
 		$data['judul'] = 'Admin | Edit Data Guru | SIAKAD SMKN 2';
-		$data['guru'] = $this->Guru_model->edit($id);
+		$data['guru'] = $this->guru_model->edit($id);
 		$data['agama'] = ['Islam', 'Protestan', 'Katholik', 'Hindu', 'Buddha', 'Konghucu'];
 
 		if ($this->form_validation->run() == FALSE) {
@@ -83,15 +83,16 @@ class Guru extends CI_Controller{
 			$this->load->view('administrator/guru/edit', $data);
 			$this->load->view('template_administrator/footer');
 		} else {
-			$this->Guru_model->update();
+			$data = $this->guru_model->edit($id);
+			$this->guru_model->update($data['foto']);
 			$this->session->set_flashdata('message', 'Berhasil Update Data');
 			redirect('administrator/guru');
 		}
 	}
 
 	public function delete($id) {
-		$data = $this->Guru_model->edit($id);
-		$this->Guru_model->delete($id, $data['foto']);
+		$data = $this->guru_model->edit($id);
+		$this->guru_model->delete($id, $data['foto']);
 		$this->session->set_flashdata('message', 'Berhasil Edit Data');
 		redirect('administrator/guru');
 	}
@@ -99,7 +100,7 @@ class Guru extends CI_Controller{
 	private function rules() {
 		$this->form_validation->set_rules('nip', 'NIP', 'required|min_length[10]');
 		$this->form_validation->set_rules('nuptk', 'NUPTK', 'required');
-		$this->form_validation->set_rules('nama_lengkap', 'Nama Guru', 'required');
+		$this->form_validation->set_rules('nama_guru', 'Nama Guru', 'required');
 		$this->form_validation->set_rules('tempat_lahir', 'Tempat Lahir', 'required');
 		$this->form_validation->set_rules('tanggal_lahir', 'Tanggal Lahir', 'required');
 		$this->form_validation->set_rules('jenis_kelamin', 'Jenis Kelamin', 'required');
@@ -114,5 +115,5 @@ class Guru extends CI_Controller{
 // {
 // 	parent::__construct();
 // 	// Use this code if not listed on autoload
-// 	//$this->load->model('admministrator/Guru_model');
+// 	//$this->load->model('admministrator/guru_model');
 // }

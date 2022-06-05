@@ -14,24 +14,27 @@ class Guru_model extends CI_Model {
         return $this->db->get_where('guru', ['id_guru' => $id])->row_array();
     }
 
-    public function update() {
+    public function update($oldFile) {
         $id = $this->input->post('id');
-        $foto = $_FILES['foto'];
+		$foto = $_FILES['userfile']['name'];
 
-        if (!$foto) {
-            return $this->session->set_flashdata('message', 'Foto Belum Terisi');
-        } else {
-            $config['upload_path'] = './uploads/foto_guru';
-            $config['allowed_types'] = 'jpg|png|gif|tiff';
+        if ($foto) {
+            $path = FCPATH.'uploads/foto_guru/'.$oldFile;
+            unlink($path);
+            $config['upload_path'] = FCPATH.'uploads/foto_guru/';
+            $config['allowed_types'] = 'gif|jpg|jpeg|png';
+            $config['max_size'] = 1024;
 
             $this->load->library('upload', $config);
-            if (!$this->upload->do_upload('foto')) {
-                echo "Gagal Upload"; die();
+
+            if ($this->upload->do_upload('userfile')) {
+                $userfile= $this->upload->data('file_name');
+                $this->db->set('foto',$userfile);
             } else {
-                $foto = $this->upload->data('file_name');
+                echo "Gagal Upload";
             }
         }
-
+	
         $data = [
             "nip" => $this->input->post("nip"),
             "nuptk" => $this->input->post("nuptk"),
@@ -43,8 +46,8 @@ class Guru_model extends CI_Model {
             "alamat" => $this->input->post("alamat"),
             "telepon" => $this->input->post("telepon"),
             "pendidikan_terakhir" => $this->input->post("pendidikan_terakhir"),
-            "foto" => $foto
         ];
+
         $this->db->where('id_guru', $id);
         $this->db->update('guru', $data);
     }
