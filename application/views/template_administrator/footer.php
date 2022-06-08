@@ -2,29 +2,30 @@
         <!-- End of content Wrapper -->
     </div>
     <!-- end of navbar -->
-	<script>
-    const pilihGuru = document.getElementById('pilihGuru')
-    const getSelected = document.querySelectorAll('input[name="selectGuru"]')
-    const namaGuru = document.getElementById('nama_guru')
-    const idGuru = document.getElementById('id_guru')
-    console.log(namaGuru.value)
-    console.log(idGuru.value)
-
-    pilihGuru.addEventListener('click', () => {
-      let selectedGuru = ''
-      for (const selected of getSelected) {
-        if (selected.checked) {
-          selectedGuru = selected.value
-        }
-      }
-      let indexGuru = selectedGuru.split(',')
-      namaGuru.value = indexGuru[1]
+    <script src="<?php echo base_url() ?>assets/js/jadwalPelajaran.js"></script>
+    <script>
+      const pilihGuru = document.getElementById('pilihGuru')
+      const getSelected = document.querySelectorAll('input[name="selectGuru"]')
+      const namaGuru = document.getElementById('nama_guru')
+      const idGuru = document.getElementById('id_guru')
       console.log(namaGuru.value)
-      idGuru.value = indexGuru[0]
       console.log(idGuru.value)
-    })
-	</script>
-	<!-- Bootstrap core JavaScript-->
+
+      pilihGuru.addEventListener('click', () => {
+        let selectedGuru = ''
+        for (const selected of getSelected) {
+          if (selected.checked) {
+            selectedGuru = selected.value
+          }
+        }
+        let indexGuru = selectedGuru.split(',')
+        namaGuru.value = indexGuru[1]
+        console.log(namaGuru.value)
+        idGuru.value = indexGuru[0]
+        console.log(idGuru.value)
+      })
+    </script>
+	  <!-- Bootstrap core JavaScript-->
     <script src="<?php echo base_url() ?>assets/vendor/jquery/jquery.min.js"></script>
     <script src="<?php echo base_url() ?>assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
     <script src="<?php echo base_url() ?>assets/bootstrap/js/bootstrap.bundle.js"></script>
