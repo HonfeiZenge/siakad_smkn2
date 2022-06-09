@@ -136,5 +136,6 @@ $autoload['model'] = array(
     'dashboard_model',
     'administrator/guru_model',
     'administrator/kelas_model',
-    'administrator/kompetensi_keahlian_model'
+    'administrator/kompetensi_keahlian_model',
+    'administrator/jadwal_pelajaran_model',
 );
