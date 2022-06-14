@@ -12,7 +12,7 @@
 			<ul class="navbar-nav sidebar sidebar-dark accordion" id="accordionSidebar">
 
 	            <li class="nav-item p">
-	                <a class="nav-link" href="">
+	                <a class="nav-link" href="<?= base_url('administrator/dashboard') ?>">
 	                    <i class="text-white bi bi-speedometer2"></i>
 	                    <span>Dashboard</span></a>
 	            </li>
@@ -167,12 +167,11 @@
 
 		  	<div class="btn-group">
 			  <button class="btn btn-secondary btn-sm dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-			    Small button
+			  	<?= $user['username'] ?>
 			  </button>
 			  <ul class="dropdown-menu">
-			    <li><button class="dropdown-item" type="button">Action</button></li>
-			    <li><button class="dropdown-item" type="button">Another </button></li>
-			    <li><button class="dropdown-item" type="button">Something</button></li>
+			    <li><button class="dropdown-item" type="button"><?= $user['username'] ?></button></li>
+			    <li><a href="<?= base_url('auth/logout'); ?>" class="dropdown-item" type="button">Log out</a></li>
 			  </ul>
 			</div>
 

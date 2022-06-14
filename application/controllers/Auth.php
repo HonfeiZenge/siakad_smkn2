@@ -1,7 +1,7 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class Login extends CI_Controller {
+class Auth extends CI_Controller {
 
     public function index()
     {
@@ -19,7 +19,7 @@ class Login extends CI_Controller {
     }
 
     private function _login() {
-        $email = $this->input->post('email', true);
+        $email = htmlspecialchars($this->input->post('email', true));
         $password = $this->input->post('password');
 
         $user = $this->db->get_where('user', ['email' => $email])->row_array();
@@ -33,26 +33,27 @@ class Login extends CI_Controller {
                         'email' => $user['email'],
                         'role_id' => $user['role_id']
                     ];
-                    print_r($data);
-                    // $this->session->set_userdata($data);
-                    // redirect('administrator/dashboard');
+                    $this->session->set_userdata($data);
+                    if ($user['role_id'] == 1) redirect('administrator/dashboard');
+                    else if ($user['role_id'] == 2) redirect('administrator/dashboard');
+                    else redirect('siswa/siswa');
                 } else {
                     $this->session->set_flashdata('message', '
                     <div class="alert alert-danger" role="alert">Wrong Password</div>
                     ');
-                    redirect('login');
+                    redirect('auth');
                 }
             } else {
                 $this->session->set_flashdata('message', '
                 <div class="alert alert-danger" role="alert">Your E-Mail Not Activated</div>
                 ');
-                redirect('login');
+                redirect('auth');
             }
         } else {
             $this->session->set_flashdata('message', '
             <div class="alert alert-danger" role="alert">Wrong E-mail</div>
             ');
-            redirect('login');
+            redirect('auth');
         }
     }
 
@@ -79,9 +80,19 @@ class Login extends CI_Controller {
             $this->session->set_flashdata('message', '
             <div class="alert alert-success" role="alert">Success Registering</div>
             ');
-            redirect('login');
+            redirect('auth');
         }
 
+    }
+
+    public function logout() {
+        $this->session->unset_userdata('email');
+        $this->session->unset_userdata('role_id');
+
+        $this->session->set_flashdata('message', '
+        <div class="alert alert-success" role="alert">You are Logged Out</div>
+        ');
+        redirect('auth');
     }
 
     private function rules() {

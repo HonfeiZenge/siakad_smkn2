@@ -15,7 +15,7 @@
                                 <div class="text-center">
                                     <h1 class="h4 text-gray-900 mb-4">Create an Account!</h1>
                                 </div>
-                                <form class="user" method="POST" action="<?php echo base_url('login/register') ?>">
+                                <form class="user" method="POST" action="<?php echo base_url('auth/register') ?>">
                                     <div class="form-group">
                                         <input type="text" class="form-control form-control-user" name="username"
                                             placeholder="Username" value="<?= set_value('username') ?>">
@@ -44,10 +44,10 @@
                                 </form>
                                 <hr>
                                 <div class="text-center">
-                                    <a class="small" href="forgot-password.html">Forgot Password?</a>
+                                    <a class="small" href="#">Forgot Password?</a>
                                 </div>
                                 <div class="text-center">
-                                    <a class="small" href="login.html">Already have an account? Login!</a>
+                                    <a class="small" href="<?= base_url('auth') ?>">Already have an account? Login!</a>
                                 </div>
                             </div>
                         </div>
