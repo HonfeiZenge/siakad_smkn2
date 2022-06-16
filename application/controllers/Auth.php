@@ -5,6 +5,12 @@ class Auth extends CI_Controller {
 
     public function index()
     {
+        if($this->session->userdata('email')) {
+			if($this->session->userdata('role_id') == 1) redirect('administrator/dashboard');
+            else if ($this->session->userdata('role_id') == 2) redirect('administrator/dashboard');
+            else redirect('siswa/siswa');
+		}
+
         $this->form_validation->set_rules('email', 'E-Mail', 'required|trim|valid_email');
         $this->form_validation->set_rules('password', 'Password', 'required|trim|min_length[6]');
 
@@ -93,6 +99,14 @@ class Auth extends CI_Controller {
         <div class="alert alert-success" role="alert">You are Logged Out</div>
         ');
         redirect('auth');
+    }
+
+    public function blocked()
+    {
+        $data['judul'] = 'Forbidden';
+        $this->load->view('template_administrator/header', $data);
+        $this->load->view('403');
+        $this->load->view('template_administrator/footer');
     }
 
     private function rules() {
