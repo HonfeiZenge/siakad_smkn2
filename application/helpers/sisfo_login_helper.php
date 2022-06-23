@@ -3,7 +3,7 @@
 function is_logged_in()
 {
     $ci = get_instance();
-    if (!$ci->session->userdata('email')) {
+    if (!$ci->session->userdata('username')) {
         redirect('auth');
     } else {
         // Get the role_id
@@ -19,7 +19,7 @@ function is_logged_in()
             'role_id' => $role_id,
             'menu_id' => $menuId
         ]);
-        
+
         if($userAccess->num_rows() < 1) {
             redirect('auth/blocked');
         }

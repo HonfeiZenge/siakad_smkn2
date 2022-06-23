@@ -12,12 +12,12 @@ class Siswa extends CI_Controller {
 	{
 		$data['judul'] = 'Siswa Dashboard | SIAKAD SMKN 2';
 
-		$this->load->view('templates/murid_header', $data);
+		$this->load->view('template_administrator/header', $data);
 		$this->load->view('template_administrator/navbar');
 		$this->load->view('siswa/index');
-		$this->load->view('templates/murid_footer');
+		$this->load->view('template_administrator/footer');
 	}
-    
+
 }
 
 ?>

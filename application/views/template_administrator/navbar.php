@@ -1,8 +1,8 @@
 <div class="d-flex mw-100 overflow-hidden">
 	<!-- Sidebar -->
-	
+
 	<div class="min-vh-100" style="width: 280px; background: #0a5c87;">
-		
+
 		<div class="p-2 text-center">
 			<a class="text-decoration-none fs-5 text-white">SISFO AKADEMIK</a>
 			<hr class="text-white">
@@ -12,7 +12,7 @@
 			<ul class="navbar-nav sidebar sidebar-dark accordion" id="accordionSidebar">
 
 				<!-- SIdebar Contents -->
-				<?php 
+				<?php
 					$role_id = $this->session->userdata('role_id');
 					$queryMenu = "SELECT user_menu.id, menu
 					FROM user_menu JOIN user_access_menu
@@ -24,7 +24,7 @@
 				?>
 
 				<?php foreach ($menu as $list) : ?>
-				
+
 					<?php
 						$menuId = $list['id'];
 						$querySubMenu = "SELECT *
@@ -47,7 +47,7 @@
 								<span><?= $sm['title']; ?></span></a>
 						</li>
 					<?php endforeach; ?>
-	          
+
 	            <!-- <li class="nav-item">
 	                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#dataMaster"
 	                    aria-expanded="true" aria-controls="dataMaster">
@@ -67,7 +67,7 @@
 
 	        </ul>
 		</div>
-		
+
 	</div>
 
 	<!-- Content Wrapper -->
@@ -85,8 +85,8 @@
 			    </form>
 		  	</div>
 			<?php
-				$user = $this->db->get_where('user', ['email' =>
-				$this->session->userdata('email')])->row_array();
+				$user = $this->db->get_where('user', ['username' =>
+				$this->session->userdata('username')])->row_array();
 			?>
 		  	<div class="btn-group">
 			  <button class="btn btn-secondary btn-sm dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
@@ -99,5 +99,5 @@
 			</div>
 
 		  </div>
-		 
+
 		</nav>

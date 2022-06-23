@@ -7,12 +7,12 @@ class Dashboard extends CI_Controller {
 		parent::__construct();
 		is_logged_in();
 	}
-	
+
 	public function index()
 	{
 		$data['judul'] = 'Admin Dashboard | SIAKAD SMKN 2';
-		$data['user'] = $this->db->get_where('user', ['email' =>
-		$this->session->userdata('email')])->row_array();
+		$data['user'] = $this->db->get_where('user', ['username' =>
+		$this->session->userdata('username')])->row_array();
 
 		$this->load->view('template_administrator/header', $data);
 		$this->load->view('template_administrator/navbar');

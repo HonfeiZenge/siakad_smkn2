@@ -138,4 +138,5 @@ $autoload['model'] = array(
     'administrator/kelas_model',
     'administrator/kompetensi_keahlian_model',
     'administrator/jadwal_pelajaran_model',
+    'administrator/user_management_model'
 );

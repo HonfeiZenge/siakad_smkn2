@@ -5,13 +5,13 @@ class Auth extends CI_Controller {
 
     public function index()
     {
-        if($this->session->userdata('email')) {
-			if($this->session->userdata('role_id') == 1) redirect('administrator/dashboard');
-            else if ($this->session->userdata('role_id') == 2) redirect('administrator/dashboard');
-            else redirect('siswa/siswa');
-		}
+        // if($this->session->userdata('email')) {
+  			// if($this->session->userdata('role_id') == 1) redirect('administrator/dashboard');
+        //   else if ($this->session->userdata('role_id') == 2) redirect('administrator/dashboard');
+        //   else redirect('siswa/siswa');
+  		  // }
 
-        $this->form_validation->set_rules('email', 'E-Mail', 'required|trim|valid_email');
+        $this->form_validation->set_rules('username', 'Username', 'required|trim');
         $this->form_validation->set_rules('password', 'Password', 'required|trim|min_length[6]');
 
         if ($this->form_validation->run() == FALSE) {
@@ -25,18 +25,18 @@ class Auth extends CI_Controller {
     }
 
     private function _login() {
-        $email = htmlspecialchars($this->input->post('email', true));
+        $username = htmlspecialchars($this->input->post('username', true));
         $password = $this->input->post('password');
 
-        $user = $this->db->get_where('user', ['email' => $email])->row_array();
-        
+        $user = $this->db->get_where('user', ['username' => $username])->row_array();
+
         // if the user is existed
         if ($user) {
             // if the user is active`
             if ($user['is_active'] == 1) {
                 if (password_verify($password, $user['password'])) {
                     $data = [
-                        'email' => $user['email'],
+                        'username' => $user['username'],
                         'role_id' => $user['role_id']
                     ];
                     $this->session->set_userdata($data);
@@ -51,13 +51,13 @@ class Auth extends CI_Controller {
                 }
             } else {
                 $this->session->set_flashdata('message', '
-                <div class="alert alert-danger" role="alert">Your E-Mail Not Activated</div>
+                <div class="alert alert-danger" role="alert">Your User Not Activated</div>
                 ');
                 redirect('auth');
             }
         } else {
             $this->session->set_flashdata('message', '
-            <div class="alert alert-danger" role="alert">Wrong E-mail</div>
+            <div class="alert alert-danger" role="alert">Wrong Username</div>
             ');
             redirect('auth');
         }
@@ -75,7 +75,6 @@ class Auth extends CI_Controller {
         } else {
             $data = [
                 'username' => htmlspecialchars($this->input->post('username', true)),
-                'email' => htmlspecialchars($this->input->post('email', true)),
                 'password' => password_hash($this->input->post('password'), PASSWORD_DEFAULT),
                 'role_id' => 3,
                 'is_active' => 1,
@@ -92,7 +91,7 @@ class Auth extends CI_Controller {
     }
 
     public function logout() {
-        $this->session->unset_userdata('email');
+        $this->session->unset_userdata('username');
         $this->session->unset_userdata('role_id');
 
         $this->session->set_flashdata('message', '
@@ -110,13 +109,12 @@ class Auth extends CI_Controller {
     }
 
     private function rules() {
-		$this->form_validation->set_rules('username', 'Username', 'required|trim');
-		$this->form_validation->set_rules('email', 'E-Mail', 'required|trim|valid_email|is_unique[user.email]');
-		$this->form_validation->set_rules('password', 'Password', 'required|trim|min_length[6]|matches[confirmPassword]', [
-            'matches' => 'Password doesn\'t match',
-        ]);
-		$this->form_validation->set_rules('confirmPassword', 'Confirm Password', 'required|trim|matches[password]');
-	}
+  		$this->form_validation->set_rules('username', 'Username', 'required|trim|is_unique[user.username]');
+  		$this->form_validation->set_rules('password', 'Password', 'required|trim|min_length[6]|matches[confirmPassword]', [
+              'matches' => 'Password doesn\'t match',
+          ]);
+  		$this->form_validation->set_rules('confirmPassword', 'Confirm Password', 'required|trim|matches[password]');
+  	}
 
 }
 

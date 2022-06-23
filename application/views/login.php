@@ -18,10 +18,10 @@
                                 <?php echo $this->session->flashdata('message'); ?>
                                 <form class="user" method="POST" action="<?php echo base_url('auth') ?>">
                                     <div class="form-group">
-                                        <input type="email" class="form-control form-control-user"
-                                            name="email" aria-describedby="emailHelp"
-                                            placeholder="Enter Email Address..." value="<?= set_value('email') ?>">
-                                        <?= form_error('email', '<small class="text-danger pl-3">', '</small>') ?>
+                                        <input type="text" class="form-control form-control-user"
+                                            name="username"
+                                            placeholder="Username" value="<?= set_value('username') ?>">
+                                        <?= form_error('username', '<small class="text-danger pl-3">', '</small>') ?>
                                     </div>
                                     <div class="form-group">
                                         <input type="password" class="form-control form-control-user"
@@ -32,13 +32,6 @@
                                         Login
                                     </button>
                                 </form>
-                                <hr>
-                                <div class="text-center">
-                                    <a class="small" href="#">Forgot Password?</a>
-                                </div>
-                                <div class="text-center">
-                                    <a class="small" href="<?= base_url('auth/register') ?>">Create an Account!</a>
-                                </div>
                             </div>
                         </div>
                     </div>
